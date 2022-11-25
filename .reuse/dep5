@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: telegraf-docker-in-docker
+Upstream-Contact: Alexander Dahl <alex@netz39.de>
+Source: https://github.com/LeSpocky/ansible-role-telegraf-docker-in-docker
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...

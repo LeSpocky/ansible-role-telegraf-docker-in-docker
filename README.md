@@ -1,5 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 Role Name
 =========
+
+[![REUSE status](https://api.reuse.software/badge/git.fsfe.org/reuse/api)](https://api.reuse.software/info/git.fsfe.org/reuse/api)
 
 A brief description of the role goes here.
 

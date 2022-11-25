@@ -1,4 +1,7 @@
 ---
+# SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
+# SPDX-License-Identifier: MIT
+
 - hosts: localhost
   remote_user: root
   roles:
