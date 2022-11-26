@@ -4,6 +4,7 @@
 
 galaxy_info:
   role_name: telegraf_docker_in_docker
+  namespace: lespocky
   author: Alexander Dahl
   description: Run Telegraf Agent with Docker input plugin in Docker container
 
