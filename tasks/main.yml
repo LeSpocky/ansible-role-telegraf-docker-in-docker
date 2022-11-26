@@ -1,5 +1,5 @@
 ---
-# SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
+# SPDX-FileCopyrightText: 2022 Alexander Dahl
 # SPDX-License-Identifier: MIT
 
 # tasks file for telegraf-docker-in-docker

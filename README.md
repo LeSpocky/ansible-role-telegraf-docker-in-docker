@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
+SPDX-FileCopyrightText: 2022 Alexander Dahl
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
@@ -50,5 +50,5 @@ MIT
 Author Information
 ------------------
 
-Written by Alexander Dahl for [Netz39](https://www.netz39.de/)
-infrastructure monitoring.
+Written by [Alexander Dahl](mailto:alex@netz39.de) for
+[Netz39](https://www.netz39.de/) infrastructure monitoring.
