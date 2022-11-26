@@ -1,8 +1,25 @@
 ---
 # SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
 # SPDX-License-Identifier: CC0-1.0
+
 repos:
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
   - repo: https://github.com/fsfe/reuse-tool
     rev: v1.0.0
     hooks:
       - id: reuse
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-yaml
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.28.0
+    hooks:
+      - id: yamllint
+  - repo: https://github.com/ansible-community/ansible-lint
+    rev: v6.8.7
+    hooks:
+      - id: ansible-lint
