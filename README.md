@@ -38,9 +38,20 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```
+- hosts: servers
+  roles:
+    - role: telegraf_docker_in_docker
+      vars:
+        tdid_data_dir: /srv/data/telegraf
+        tdid_influxdb_org: Home
+        tdid_influx_token: "{{ lookup( … ) }}"
+        # optional
+        tdid_influxdb_bucket: devops
+        tdid_influxdb_url: "http://influx.example.org:8086"
+        tdid_docker_image: telegraf:1.24-alpine
+        tdid_timezone: "Europe/Berlin"
+```
 
 License
 -------

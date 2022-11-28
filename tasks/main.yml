@@ -2,3 +2,42 @@
 # SPDX-License-Identifier: MIT
 ---
 # tasks file for telegraf-docker-in-docker
+
+- name: Ensure system user telegraf is present on the host and in group docker
+  ansible.builtin.user:
+    name: telegraf
+    system: true
+    append: true
+    groups: docker
+
+- name: Get user info
+  ansible.builtin.getent:
+    database: passwd
+
+- name: Get group info
+  ansible.builtin.getent:
+    database: group
+
+- name: Copy telegraf docker_input_agent conf
+  ansible.builtin.template:
+    src: templates/docker_input_agent.conf.j2
+    dest: "{{ tdid_data_dir }}/docker_input_agent.conf"
+  notify:
+    - Restart telegraf docker_input_agent
+
+- name: Setup docker container for telegraf (Docker)
+  community.docker.docker_container:
+    name: telegraf_docker_input_agent
+    image: "{{ tdid_docker_image }}"
+    pull: true
+    state: started
+    detach: true
+    restart_policy: unless-stopped
+    env:
+      TZ: "{{ tdid_timezone }}"
+      INFLUX_TOKEN: "{{ tdid_influx_token }}"
+    volumes:
+      - "/var/run/docker.sock:/run/docker.sock"
+      - "{{ tdid_data_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
+    # user: "telegraf:docker"
+    user: "{{ ansible_facts.getent_passwd['telegraf'][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
