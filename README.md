@@ -58,7 +58,10 @@ Just include the role and set some [variables](#role-variables).
 
 ## License
 
-MIT
+This project is licensed unter the [MIT License](LICENSES/MIT.txt) unless noted differently in the file and adheres to [REUSE compliance](https://api.reuse.software/info/git.fsfe.org/reuse/api).
+
+© 2022 [Alexander Dahl](https://github.com/LeSpocky) and contributors
+
 
 ## Author Information
 
