@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2022 Alexander Dahl
+SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
