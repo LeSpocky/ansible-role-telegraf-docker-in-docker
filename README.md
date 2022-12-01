@@ -17,9 +17,43 @@ module](https://docs.ansible.com/ansible/latest/collections/community/docker/doc
 
 ## Role Variables
 
-**tbd**
+### Mandatory Variables
 
-*A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.*
+* `tdid_influxdb_org`:
+  * Description: InfluxDB organization name.
+* `tdid_influx_token`:
+  * Description: InfluxDB API token.
+    Recommended to not put this into the playbook, but use vault or
+    secure lookup!
+
+### Optional Variables
+
+* `tdid_data_dir`:
+  * Default: `"/srv/data/telegraf"`
+  * Description: The destination directory on the host, where the role
+    copies the configuration file to.
+* `tdid_docker_image`:
+  * Default: `"telegraf:latest"`
+  * Description: Combination of "telegraf" and some tag.
+    Default uses the latest image from
+    [Docker Hub](https://hub.docker.com/_/telegraf/).
+  * Examples:
+    * `"telegraf:latest"`
+    * `"telegraf:alpine"`
+    * `"telegraf:1.23"`
+    * `"telegraf:1.24-alpine"`
+* `tdid_influxdb_url`:
+  * Default: `"http://localhost:8086"`
+  * Description: URL of the node running InfluxDB node.
+* `tdid_influxdb_bucket`:
+  * Default: `"default"`
+  * Description: Destination bucket to write into.
+* `tdid_timezone`:
+  * Default: `"UTC"`
+  * Description: Environment variable `TZ` passed to the telegraf container.
+  * Examples:
+    * `Europe/Berlin`
+    * `Asia/Nepal`
 
 ## Dependencies
 
@@ -58,10 +92,11 @@ Just include the role and set some [variables](#role-variables).
 
 ## License
 
-This project is licensed unter the [MIT License](LICENSES/MIT.txt) unless noted differently in the file and adheres to [REUSE compliance](https://api.reuse.software/info/git.fsfe.org/reuse/api).
+This project is licensed unter the [MIT License](LICENSES/MIT.txt)
+unless noted differently in the file and adheres to
+[REUSE compliance](https://api.reuse.software/info/git.fsfe.org/reuse/api).
 
 © 2022 [Alexander Dahl](https://github.com/LeSpocky) and contributors
-
 
 ## Author Information
 
