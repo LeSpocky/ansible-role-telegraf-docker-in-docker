@@ -10,6 +10,15 @@ SPDX-License-Identifier: CC-BY-4.0
 
 Ansible Role for running Telegraf Agent with Docker input plugin in Docker container.
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Role Variables](#role-variables)
+- [Dependencies](#dependencies)
+- [Example Playbook](#example-playbook)
+- [License](#license)
+- [Author Information](#author-information)
+
 ## Requirements
 
 Uses a task of type [community.docker.docker_container
