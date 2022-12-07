@@ -3,9 +3,9 @@
 ---
 # tasks file for telegraf-docker-in-docker
 
-- name: Ensure system user telegraf is present on the host and in group docker
+- name: Ensure system user is present on the host and in group docker
   ansible.builtin.user:
-    name: telegraf
+    name: "{{ tdid_user }}"
     system: true
     append: true
     groups: docker
@@ -40,4 +40,4 @@
       - "/var/run/docker.sock:/run/docker.sock"
       - "{{ tdid_data_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
     # user: "telegraf:docker"
-    user: "{{ ansible_facts.getent_passwd['telegraf'][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
+    user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"

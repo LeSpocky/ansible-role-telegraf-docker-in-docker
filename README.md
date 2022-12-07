@@ -96,6 +96,22 @@ This role can be installed through your *requirements.yml*, either from
   * Examples:
     * `Europe/Berlin`
     * `Asia/Nepal`
+* `tdid_user`:
+  * Default: `"telegraf"`
+  * Description: System user created or modified on the host.
+  * Background:
+    Mapping arbitrary host users to container users is not easily
+    possible.
+    Access rights on the host apply to the same numerical UIDs and GIDs
+    inside of containers.
+    A process inside of a container accessing something on the host must
+    run with the uid/gid required on the host to access certain things
+    on the host.
+    It is necessary to have a user in the docker group to access the
+    docker engine api endpoint without super user permissions.
+    If not present on the host already, this user will be created as a
+    system user, and put into the group 'docker'.
+    The Telegraf agent can run inside the container with that UID.
 
 ## Dependencies
 
