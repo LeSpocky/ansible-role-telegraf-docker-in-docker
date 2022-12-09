@@ -146,6 +146,7 @@ Just include the role and set some [variables](#role-variables).
         tdid_influxdb_url: "http://influx.example.org:8086"
         tdid_docker_image: telegraf:1.24-alpine
         tdid_timezone: "Europe/Berlin"
+        tdid_user: telegraf
 ```
 
 ## Contributing
