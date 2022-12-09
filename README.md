@@ -142,7 +142,7 @@ Just include the role and set some [variables](#role-variables).
       vars:
         tdid_influxdb_org: Home
         tdid_influx_token: "{{ lookup( … ) }}"
-        tdid_conf_dir: /srv/data/telegraf
+        tdid_conf_dir: "/etc/telegraf"
         tdid_influxdb_bucket: devops
         tdid_influxdb_url: "http://influx.example.org:8086"
         tdid_docker_image: telegraf:1.24-alpine
