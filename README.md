@@ -71,7 +71,7 @@ This role can be installed through your *requirements.yml*, either from
 
 ### Optional Variables
 
-* `tdid_data_dir`:
+* `tdid_conf_dir`:
   * Default: `"/srv/data/telegraf"`
   * Description: The destination directory on the host, where the role
     copies the configuration file to.
@@ -142,7 +142,7 @@ Just include the role and set some [variables](#role-variables).
       vars:
         tdid_influxdb_org: Home
         tdid_influx_token: "{{ lookup( … ) }}"
-        tdid_data_dir: /srv/data/telegraf
+        tdid_conf_dir: /srv/data/telegraf
         tdid_influxdb_bucket: devops
         tdid_influxdb_url: "http://influx.example.org:8086"
         tdid_docker_image: telegraf:1.24-alpine
