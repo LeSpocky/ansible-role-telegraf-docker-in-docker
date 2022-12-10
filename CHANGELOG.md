@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Make system user name configurable (was fixed to 'telegraf' before)
   ([#6](https://github.com/LeSpocky/ansible-role-telegraf-docker-in-docker/issues/6))
 
+### Changed
+
+- Renamed variable `tdid_data_dir` to `tdid_conf_dir` and changed
+  default value to */etc*
+  ([#7](https://github.com/LeSpocky/ansible-role-telegraf-docker-in-docker/issues/7))
+
 ## [0.1.0] - 2022-11-29
 
 ### Added

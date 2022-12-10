@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 ---
 # defaults file for telegraf-docker-in-docker
-tdid_data_dir: "/srv/data/telegraf"
+tdid_conf_dir: "/etc"
 tdid_docker_image: "telegraf:latest"
 tdid_influxdb_url: "http://localhost:8086"
 tdid_influxdb_bucket: "default"

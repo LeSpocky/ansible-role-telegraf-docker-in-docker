@@ -21,7 +21,7 @@
 - name: Copy telegraf docker_input_agent conf
   ansible.builtin.template:
     src: templates/docker_input_agent.conf.j2
-    dest: "{{ tdid_data_dir }}/docker_input_agent.conf"
+    dest: "{{ tdid_conf_dir }}/docker_input_agent.conf"
   notify:
     - Restart telegraf docker_input_agent
 
@@ -38,6 +38,6 @@
       INFLUX_TOKEN: "{{ tdid_influx_token }}"
     volumes:
       - "/var/run/docker.sock:/run/docker.sock"
-      - "{{ tdid_data_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
+      - "{{ tdid_conf_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
     # user: "telegraf:docker"
     user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
