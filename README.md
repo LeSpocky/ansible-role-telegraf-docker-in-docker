@@ -72,7 +72,7 @@ This role can be installed through your *requirements.yml*, either from
 ### Optional Variables
 
 * `tdid_conf_dir`:
-  * Default: `"/srv/data/telegraf"`
+  * Default: `"/etc"`
   * Description: The destination directory on the host, where the role
     copies the configuration file to.
 * `tdid_docker_image`:
