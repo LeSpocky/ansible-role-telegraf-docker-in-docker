@@ -18,6 +18,12 @@
   ansible.builtin.getent:
     database: group
 
+- name: Make sure the configuration directory exists
+  ansible.builtin.file:
+    path: "{{ tdid_conf_dir }}"
+    state: directory
+    mode: '0755'
+
 - name: Copy telegraf docker_input_agent conf
   ansible.builtin.template:
     src: templates/docker_input_agent.conf.j2
