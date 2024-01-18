@@ -5,7 +5,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Telegraf Docker in Docker _(telegraf-docker-in-docker)_
 
-[![REUSE status](https://api.reuse.software/badge/git.fsfe.org/reuse/api)](https://api.reuse.software/info/git.fsfe.org/reuse/api)
+[![REUSE status](https://api.reuse.software/badge/github.com/LeSpocky/ansible-role-telegraf-docker-in-docker)](https://api.reuse.software/info/github.com/LeSpocky/ansible-role-telegraf-docker-in-docker)
 ![license MIT](https://img.shields.io/badge/license-MIT-informational)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
