@@ -3,7 +3,7 @@
 ---
 # handlers file for telegraf-docker-in-docker
 - name: Restart telegraf docker_input_agent
-  docker_container:
+  community.docker.docker_container:
     name: telegraf_docker_input_agent
     state: started
     restart: yes
