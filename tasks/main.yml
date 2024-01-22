@@ -28,6 +28,7 @@
   ansible.builtin.template:
     src: templates/docker_input_agent.conf.j2
     dest: "{{ tdid_conf_dir }}/docker_input_agent.conf"
+    mode: '0644'
   notify:
     - Restart telegraf docker_input_agent
 
