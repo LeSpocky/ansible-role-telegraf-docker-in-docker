@@ -3,48 +3,53 @@
 ---
 # tasks file for telegraf-docker-in-docker
 
-- name: Ensure system user is present on the host and in group docker
-  ansible.builtin.user:
-    name: "{{ tdid_user }}"
-    system: true
-    append: true
-    groups: docker
+- name: Run all tasks for role telegraf-docker-in-docker
+  # TODO Add armv8 once the correct string is known
+  when: (ansible_architecture == "x86_64") or
+        (ansible_architecture == "armv7l")
+  block:
+    - name: Ensure system user is present on the host and in group docker
+      ansible.builtin.user:
+        name: "{{ tdid_user }}"
+        system: true
+        append: true
+        groups: docker
 
-- name: Get user info
-  ansible.builtin.getent:
-    database: passwd
+    - name: Get user info
+      ansible.builtin.getent:
+        database: passwd
 
-- name: Get group info
-  ansible.builtin.getent:
-    database: group
+    - name: Get group info
+      ansible.builtin.getent:
+        database: group
 
-- name: Make sure the configuration directory exists
-  ansible.builtin.file:
-    path: "{{ tdid_conf_dir }}"
-    state: directory
-    mode: '0755'
+    - name: Make sure the configuration directory exists
+      ansible.builtin.file:
+        path: "{{ tdid_conf_dir }}"
+        state: directory
+        mode: '0755'
 
-- name: Copy telegraf docker_input_agent conf
-  ansible.builtin.template:
-    src: templates/docker_input_agent.conf.j2
-    dest: "{{ tdid_conf_dir }}/docker_input_agent.conf"
-    mode: '0644'
-  notify:
-    - Restart telegraf docker_input_agent
+    - name: Copy telegraf docker_input_agent conf
+      ansible.builtin.template:
+        src: templates/docker_input_agent.conf.j2
+        dest: "{{ tdid_conf_dir }}/docker_input_agent.conf"
+        mode: '0644'
+      notify:
+        - Restart telegraf docker_input_agent
 
-- name: Setup docker container for telegraf (Docker)
-  community.docker.docker_container:
-    name: telegraf_docker_input_agent
-    image: "{{ tdid_docker_image }}"
-    pull: true
-    state: started
-    detach: true
-    restart_policy: unless-stopped
-    env:
-      TZ: "{{ tdid_timezone }}"
-      INFLUX_TOKEN: "{{ tdid_influx_token }}"
-    volumes:
-      - "/var/run/docker.sock:/run/docker.sock"
-      - "{{ tdid_conf_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
-    # user: "telegraf:docker"
-    user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
+    - name: Setup docker container for telegraf (Docker)
+      community.docker.docker_container:
+        name: telegraf_docker_input_agent
+        image: "{{ tdid_docker_image }}"
+        pull: true
+        state: started
+        detach: true
+        restart_policy: unless-stopped
+        env:
+          TZ: "{{ tdid_timezone }}"
+          INFLUX_TOKEN: "{{ tdid_influx_token }}"
+        volumes:
+          - "/var/run/docker.sock:/run/docker.sock"
+          - "{{ tdid_conf_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
+        # user: "telegraf:docker"
+        user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
