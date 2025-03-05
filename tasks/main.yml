@@ -4,9 +4,7 @@
 # tasks file for telegraf-docker-in-docker
 
 - name: Run all tasks for role telegraf-docker-in-docker
-  # TODO Add armv8 once the correct string is known
-  when: (ansible_architecture == "x86_64") or
-        (ansible_architecture == "armv7l")
+  when: tdid_arch_is_supported
   block:
     - name: Ensure system user is present on the host and in group docker
       ansible.builtin.user:
@@ -53,3 +51,8 @@
           - "{{ tdid_conf_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
         # user: "telegraf:docker"
         user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
+
+- name: Inform user why tasks for role telegraf-docker-in-docker were skipped
+  ansible.builtin.debug:
+    msg: "Skipped because for {{ ansible_architecture }} there is no docker image!"
+  when: not tdid_arch_is_supported
