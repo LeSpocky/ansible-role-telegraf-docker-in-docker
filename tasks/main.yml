@@ -1,50 +1,14 @@
 # SPDX-FileCopyrightText: 2022 Alexander Dahl <alex@netz39.de>
 # SPDX-License-Identifier: MIT
 ---
-# tasks file for telegraf-docker-in-docker
+# main tasks file for telegraf-docker-in-docker
 
-- name: Ensure system user is present on the host and in group docker
-  ansible.builtin.user:
-    name: "{{ tdid_user }}"
-    system: true
-    append: true
-    groups: docker
+- name: Check if the role can be applied to the target host
+  when: tdid_arch_is_supported
+  ansible.builtin.include_tasks:
+    file: tdid.yml
 
-- name: Get user info
-  ansible.builtin.getent:
-    database: passwd
-
-- name: Get group info
-  ansible.builtin.getent:
-    database: group
-
-- name: Make sure the configuration directory exists
-  ansible.builtin.file:
-    path: "{{ tdid_conf_dir }}"
-    state: directory
-    mode: '0755'
-
-- name: Copy telegraf docker_input_agent conf
-  ansible.builtin.template:
-    src: templates/docker_input_agent.conf.j2
-    dest: "{{ tdid_conf_dir }}/docker_input_agent.conf"
-    mode: '0644'
-  notify:
-    - Restart telegraf docker_input_agent
-
-- name: Setup docker container for telegraf (Docker)
-  community.docker.docker_container:
-    name: telegraf_docker_input_agent
-    image: "{{ tdid_docker_image }}"
-    pull: true
-    state: started
-    detach: true
-    restart_policy: unless-stopped
-    env:
-      TZ: "{{ tdid_timezone }}"
-      INFLUX_TOKEN: "{{ tdid_influx_token }}"
-    volumes:
-      - "/var/run/docker.sock:/run/docker.sock"
-      - "{{ tdid_conf_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
-    # user: "telegraf:docker"
-    user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
+- name: Inform user why tasks for role were skipped
+  ansible.builtin.debug:
+    msg: "Skipped because there is no docker image for {{ ansible_architecture }}!"
+  when: not tdid_arch_is_supported
