@@ -16,5 +16,8 @@
         "image: (?<depName>.*?):(?<currentValue>.*?)(@(?<currentDigest>sha256:.*?))?\\s"
       ]
     }
-  ]
+  ],
+  "pre-commit": {
+    "enabled": true
+  }
 }
