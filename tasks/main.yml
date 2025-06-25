@@ -3,6 +3,13 @@
 ---
 # main tasks file for telegraf-docker-in-docker
 
+- name: Debug output of variables
+  ansible.builtin.debug:
+    msg:
+      - "tdid_arch_has_alpine_image: {{ tdid_arch_has_alpine_image }}"
+      - "tdid_arch_is_supported: {{ tdid_arch_is_supported }}"
+      - "tdid_docker_image_is_supported: {{ tdid_docker_image_is_supported }}"
+
 - name: Check if the role can be applied to the target host
   when: tdid_docker_image_is_supported
   ansible.builtin.include_tasks:
