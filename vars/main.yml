@@ -3,9 +3,25 @@
 ---
 # vars file for telegraf-docker-in-docker
 
+# Link: https://github.com/influxdata/influxdata-docker/blob/master/telegraf/1.35/alpine/Dockerfile
+# TODO Add armv8 once the correct string is known
+tdid_arch_has_alpine_image: >-
+  {{
+    (ansible_architecture == 'x86_64')
+  }}
+
+# Link: https://github.com/influxdata/influxdata-docker/blob/master/telegraf/1.35/Dockerfile
 # TODO Add armv8 once the correct string is known
 tdid_arch_is_supported: >-
   {{
     (ansible_architecture == 'x86_64') or
     (ansible_architecture == 'armv7l')
+  }}
+
+# If user configured image containing "alpine", but there is no alpine
+# for that arch, then that image is not supported.
+tdid_docker_image_is_supported: >-
+  {{
+    tdid_arch_is_supported and
+    not (tdid_docker_image is search("alpine") and not tdid_arch_has_alpine_image)
   }}

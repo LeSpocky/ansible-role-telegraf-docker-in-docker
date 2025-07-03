@@ -3,12 +3,19 @@
 ---
 # main tasks file for telegraf-docker-in-docker
 
+- name: Debug output of variables
+  ansible.builtin.debug:
+    msg:
+      - "tdid_arch_has_alpine_image: {{ tdid_arch_has_alpine_image }}"
+      - "tdid_arch_is_supported: {{ tdid_arch_is_supported }}"
+      - "tdid_docker_image_is_supported: {{ tdid_docker_image_is_supported }}"
+
 - name: Check if the role can be applied to the target host
-  when: tdid_arch_is_supported
+  when: tdid_docker_image_is_supported
   ansible.builtin.include_tasks:
     file: tdid.yml
 
 - name: Inform user why tasks for role were skipped
   ansible.builtin.debug:
-    msg: "Skipped because there is no docker image for {{ ansible_architecture }}!"
-  when: not tdid_arch_is_supported
+    msg: "Skipped because there is no docker image '{{ tdid_docker_image }}' for {{ ansible_architecture }}!"
+  when: not tdid_docker_image_is_supported
