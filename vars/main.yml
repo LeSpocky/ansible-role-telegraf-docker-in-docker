@@ -18,6 +18,8 @@ tdid_arch_is_supported: >-
     (ansible_architecture == 'armv7l')
   }}
 
+# If user configured image containing "alpine", but there is no alpine
+# for that arch, then that image is not supported.
 tdid_docker_image_is_supported: >-
   {{
     tdid_arch_is_supported and
