@@ -6,4 +6,4 @@
   community.docker.docker_container:
     name: telegraf_docker_input_agent
     state: started
-    restart: yes
+    restart: true
