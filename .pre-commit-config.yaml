@@ -19,6 +19,6 @@ repos:
     hooks:
       - id: yamllint
   - repo: https://github.com/ansible-community/ansible-lint
-    rev: v25.7.0
+    rev: v25.8.0
     hooks:
       - id: ansible-lint
