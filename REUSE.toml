@@ -1,0 +1,5 @@
+version = 1
+SPDX-PackageName = "telegraf-docker-in-docker"
+SPDX-PackageSupplier = "Alexander Dahl <alex@netz39.de>"
+SPDX-PackageDownloadLocation = "https://github.com/LeSpocky/ansible-role-telegraf-docker-in-docker"
+annotations = []
