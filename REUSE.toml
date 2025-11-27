@@ -1,0 +1,10 @@
+version = 1
+
+SPDX-PackageName = "telegraf-docker-in-docker"
+SPDX-PackageSupplier = "Alexander Dahl <alex@netz39.de>"
+SPDX-PackageDownloadLocation = "https://github.com/LeSpocky/ansible-role-telegraf-docker-in-docker"
+
+[[annotations]]
+path = "renovate.json"
+SPDX-FileCopyrightText = "2025 Alexander Dahl <alex@netz39.de>"
+SPDX-License-Identifier = "CC0-1.0"
