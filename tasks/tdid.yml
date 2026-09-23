@@ -25,6 +25,7 @@
     mode: '0755'
 
 - name: Copy telegraf docker_input_agent conf
+  no_log: true
   ansible.builtin.template:
     src: templates/docker_input_agent.conf.j2
     dest: "{{ tdid_conf_dir }}/docker_input_agent.conf"
@@ -33,6 +34,7 @@
     - Restart telegraf docker_input_agent
 
 - name: Setup docker container for telegraf (Docker)
+  no_log: true
   community.docker.docker_container:
     name: telegraf_docker_input_agent
     image: "{{ tdid_docker_image }}"
