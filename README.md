@@ -83,8 +83,9 @@ This role can be installed through your *requirements.yml*, either from
   * Examples:
     * `"telegraf:latest"`
     * `"telegraf:alpine"`
-    * `"telegraf:1.23"`
-    * `"telegraf:1.24-alpine"`
+    * `"telegraf:1.37"`
+    * `"telegraf:1.38-alpine"`
+  * You need telegraf 1.37 or later.
 * `tdid_influxdb_url`:
   * Default: `"http://localhost:8086"`
   * Description: URL of the node running InfluxDB node.

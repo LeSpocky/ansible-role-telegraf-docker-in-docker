@@ -50,3 +50,4 @@
       - "{{ tdid_conf_dir }}/docker_input_agent.conf:/etc/telegraf/telegraf.conf:ro"
     # user: "telegraf:docker"
     user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
+    command: telegraf --strict-env-handling
