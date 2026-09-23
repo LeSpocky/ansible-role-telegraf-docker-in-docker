@@ -51,3 +51,6 @@
     # user: "telegraf:docker"
     user: "{{ ansible_facts.getent_passwd[tdid_user][1] }}:{{ ansible_facts.getent_group['docker'][1] }}"
     command: telegraf --strict-env-handling
+    exposed_ports: [8080]
+    healthcheck:
+      test: "wget -S -q -O /dev/null http://localhost:8080/ 2>&1 | grep -q 'HTTP/1.1 200 OK' || exit 1"
