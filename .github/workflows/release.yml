@@ -25,7 +25,7 @@ jobs:
       - name: "Generate release changelog"
         id: generate-release-changelog
         # Version 2.4 is available, but creates scrambled output
-        uses: janheinrichmerker/action-github-changelog-generator@v2.3
+        uses: janheinrichmerker/action-github-changelog-generator@v2.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           onlyLastTag: "true"   # set to false if no tags exist (buggy with only one tag)
